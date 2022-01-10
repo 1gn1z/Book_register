@@ -71,8 +71,10 @@ class Libro(Model):
     class Meta:
         database = db
 
+
 # Funcion que CONECTA (db.connect()) y CREA LAS TABLAS (db.create_tables([Tabla1, Tabla2,])) SAFE=TRUE para evitar que crashee
 # el programa, ya que si la base de datos ya existe el programa crashea al correrlo una vez ya creada la base de datos.
+
 
 def create_n_connect():
     db.connect()
@@ -88,6 +90,7 @@ def create_n_connect():
 # Si la opcion esta en el menu
 # Entramos a la opcion del menu elegida:   MENU[OPCION]()   Accedemos a esa opcion via index [] del dict.
 
+
 def menu_loop():
     """Mostrar Menú"""
     choice = None
@@ -97,3 +100,76 @@ def menu_loop():
         choice = input('\nOpción: ').lower().strip()
         if choice in menu:
             menu[choice]()
+
+
+# Funcion para agregar un libro a la base de datos.
+
+# Pedimos los datos (autor, titulo, etc.) mediante inputs
+# Confirmation, para preguntar al usuario si los datos del libro son correctos.
+# Si la confirmacion NO es correcta, osea, si el usuario pone 'n', devuelve la funcion, para que despliegue "add_book" desde el principio
+# SINO
+# SAVE, esta variable pregunta al usuario, via un input, que si quiere guardar el libro en el registro.
+# Si SAVE es igual a 'y', osea, si el usuario SI quiere guardar el registro
+# Guardamos el registro con BOOK.CREATE, y dentro del parentesis asignamos los INPUTS que nos paso el usuario a las
+# INSTANCIAS (CharField, IntegerField, etc.) (FILAS) del registro.
+
+Libro.registro = Libro.registro     # Asignacion GLOBAL para usarla dentro de la funcion "agregar_libro"
+
+def agregar_libro():
+    """Agregar un libro"""
+    print('Agregar un libro al registro: ')
+    titulo_libro = input('Título del libro:\n').capitalize()      # Capitalize para que la primera letra del titulo se guarde en mayuscula
+    titulo_original = input('Título original:\n').capitalize()     # Capitalize para que la primera letra del titulo se guarde en mayuscula
+    autor = input('Nombre del autor:\n').title()    # Devuelve en mayusculas LA PRIMERA LETRA DE CADA PALABEA, ideal para los autores
+
+    while True:     # Mientras sea True (bucle indenifido)
+        try:        # Intenta
+            anio_de_publicacion = int(input('Año de publicación:\n'))
+            anio_de_edicion = int(input('Año de edición:\n'))
+        except ValueError:      # Si hay error de valor es xq el usuario ingreso letras en lugar de números
+            print('Debes ingresar un número entero en año de publicacion:\n')
+        else:
+            editorial = input('Editorial del libro:\n')
+            edicion = input('Edición (por ejemplo: 1a edición, 1a reimpresión, etc:\n')
+            escritura = input('Escritura (por ejemplo: cuento, ensayo, novela, etc:)\n')
+            coleccion = input('Colección:\n')
+            genero = input('Genero(s) del libro:\n')
+            isbn = input('ISBN del libro:\n')
+            ilustrador = input('Ilustrador del libro:\n')
+            leido = input('Ya leiste el libro? [S/n]: ').lower().strip()
+            libro_original = input('El libro es original? [S/n]:\n')
+            tipo_de_libro = input('Tipo de libro (por ejemplo, novela, comic, antologia de cuentos, etc.)')
+            traduccion = input('Traducción de:\n')
+            Libro.registro = Libro.registro#
+            confirmacion = input('Los datos son correctos? [S/n]: ')
+            if confirmacion == 'n':
+                print('\n\n')
+                agregar_libro()
+            else:
+                save = input('Quieres guardar este libro en el registro? [S/n]: ').lower().strip()
+                if save != 's':
+                    print()
+                    menu_loop()
+
+                elif save == 's':
+                    Libro.create(
+                        anio_de_edicion = anio_de_edicion,
+                        anio_de_publicacion = anio_de_publicacion,
+                        autor = autor,
+                        coleccion = coleccion,
+                        edicion = edicion,
+                        editorial = editorial,
+                        escritura =  escritura,
+                        libro_original = libro_original,  
+                        genero = genero,
+                        ilustrador = ilustrador,
+                        isbn = isbn,
+                        leido = leido,
+                        es_original = es_original,
+                        Tipo_de_libro = tipo_de_libro,
+                        titulo_libro = titulo_libro,
+                        titulo_original = titulo_original,
+                        tradducion = traduccion
+                                ) 
+                    print('\nTu registro fue guardado exitosamente\n\n')
+                    break
