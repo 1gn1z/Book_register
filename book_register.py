@@ -78,3 +78,22 @@ def create_n_connect():
     db.connect()
     db.create_tables([Libro], safe=True)        
 
+
+# Funcion del menu, variable "choice" inicializada en NADA.
+# Mientras la opcion sea diferente de 'q':
+# Hacemos un ciclo for que itere los elementos de nuestro diccionario ordenado, y con el __doc__, que esta en el VALOR
+# muestre el docstring de ese valor, que es el docstring que esta en la funcion (menu_loop: DocString: """Show Menu""")
+# Imprimimos esas llaves y valores (docstrings), de nuestro diccionario ordenado.
+# Pedimos la opcion al usuario, via un input, y convertimos la opcion a minusculas con lower y sin espacios antes o despues (strip)
+# Si la opcion esta en el menu
+# Entramos a la opcion del menu elegida:   MENU[OPCION]()   Accedemos a esa opcion via index [] del dict.
+
+def menu_loop():
+    """Mostrar Menú"""
+    choice = None
+    while choice != 'q':
+        for key, value in menu.items():
+            print(f'{key}) {value.__doc__}')
+        choice = input('\nOpción: ').lower().strip()
+        if choice in menu:
+            menu[choice]()
