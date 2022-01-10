@@ -238,3 +238,11 @@ def ver_libros(search_query=None):      # Esta función recibe un parámetro, qu
         elif sig_accion == 'x':
             eliminar_libro(libro)
     
+# Funcion para buscar un libro en particular
+# con una search query, el usuario escribe el libro que quiera buscar.
+# Y en la funcion "ver_libros", si existe el search_query, lo busca via where.libro.contains(search_query)
+
+def buscar_libro():
+    """Buscar un Libro""" 
+    search_query = input('Buscar libro: ').strip()
+    ver_libros(search_query)
