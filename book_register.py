@@ -197,19 +197,19 @@ def agregar_libro():
 
 def ver_libros(search_query=None):      # Esta función recibe un parámetro, que es la busqueda que el usuario hará (serarch_query). Como cuando buscas un título de un video en YouTube.
     """Ver todos los libros registrados"""    
-    libros = Libro.select().order_by(Libro.titulo.desc())   # todos los registros existentes con Libro.select() | ordenados por (ordered_by) . titulo descendente para ver los más recientemente agregados primero.
+    libros = Libro.select().order_by(Libro.titulo_libro.desc())   # todos los registros existentes con Libro.select() | ordenados por (ordered_by) . titulo descendente para ver los más recientemente agregados primero.
     
     if search_query:
-        libros = libros.where(Libro.titulo.contains(search_query))
+        libros = libros.where(Libro.titulo_libro.contains(search_query))
 
     for libro in libros:
 
         print()
         print('________________________________________')
         print()
-        print('Título del libro: ' + libro.titulo)
+        print('Título del libro: ' + libro.titulo_libro)
         print('Autor del libro: ' + libro.autor)
-        print('Año de publicación: ' + str(libro.anio)) 
+        print('Año de publicación: ' + str(libro.anio_de_publicacion)) 
         print('Géneros(s) del libro: ' + libro.genero)
         print('ISBN del libro: ' + libro.isbn)
         print()
@@ -237,3 +237,4 @@ def ver_libros(search_query=None):      # Esta función recibe un parámetro, qu
             editar_libro(libro)
         elif sig_accion == 'x':
             eliminar_libro(libro)
+    
