@@ -176,3 +176,64 @@ def agregar_libro():
                     print('\nTu registro fue guardado exitosamente\n\n')
                     break
 
+
+# Funcion para ver todos los libros registrados actualmente en el programa.
+# libros = Libro.select().order_by(Libro.titulo.desc()). Del mas recientemente agregado al mas antiguamente agregado.
+
+# if search_query:  Si en verdad hay una busqueda, dado que es opcional, entonces:
+# libros=libros.where...    libros es igual a todos (select) los libros, donde (where), el titulo del libro contenga (contains)
+# la search query, que es lo que el usuario nos paso en la misma search query.
+
+# ciclo for para iterar todos los libros, y va imprimiendo uno por uno el titulo, autor, año, generos, isbn y leido.
+
+# Si el libro.leido == 's', es decir si al registrarlo dijimos que ya lo leimos, entonces imprimimos que si esta leido
+# SINO, libro.leido == 'n', entonces imprimimos que no esta leido
+# ELSE, imprimimos que no sabemos si esta leido o no.
+
+# sig_accion, un INPUT que detiene el ciclo for en la iteracion actual, asi que si oprimimos s, nos muestra el siguiente libro :D
+# Si presionamos q, hace un break, es decir, rompe el ciclo y nos saca de el, dejandonos en el menu principal
+# si presionamos e, ejecuta la funcion "eliminar_libro"
+
+
+def ver_libros(search_query=None):      # Esta función recibe un parámetro, que es la busqueda que el usuario hará (serarch_query). Como cuando buscas un título de un video en YouTube.
+    """Ver todos los libros registrados"""    
+    libros = Libro.select().order_by(Libro.titulo.desc())   # todos los registros existentes con Libro.select() | ordenados por (ordered_by) . titulo descendente para ver los más recientemente agregados primero.
+    
+    if search_query:
+        libros = libros.where(Libro.titulo.contains(search_query))
+
+    for libro in libros:
+
+        print()
+        print('________________________________________')
+        print()
+        print('Título del libro: ' + libro.titulo)
+        print('Autor del libro: ' + libro.autor)
+        print('Año de publicación: ' + str(libro.anio)) 
+        print('Géneros(s) del libro: ' + libro.genero)
+        print('ISBN del libro: ' + libro.isbn)
+        print()
+        print('Libro leído? ')
+        if libro.leido == 's':
+            print('SI!, libro leído :D')
+        elif libro.leido == 'n':
+            print('NO, libro no leído :(')
+        else:
+            print('No se sabe si el libro ha sido leído o no')
+        print()
+        print('________________________________________')
+        print('\n')
+        print('s) siguiente libro')
+        print('e) editar el libro')
+        print('x) eliminar libro')
+        print('q) regresar al menú')
+        print('\n')
+        sig_accion = input('Acción: [Seq]: ').lower().strip()
+        print('\n')
+        if sig_accion == 'q':
+            print('\n')
+            break
+        elif sig_accion == 'e':
+            editar_libro(libro)
+        elif sig_accion == 'x':
+            eliminar_libro(libro)
