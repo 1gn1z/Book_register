@@ -265,3 +265,28 @@ def quitar():
     else:
         print('\n')
         menu_loop()   
+
+# MENU ORDENADO, que muestra UN VALOR ('a', 's', 'd'...) y despliega el DOCSTRING que contiene la funcion especificada (agregar_libro,
+# ver_libros, etc. Ejecutado el programa luce asi:
+# 
+#       a Add a Book
+#       s Search a Book
+#       d Delete a Book
+#       q Exit the program
+    
+menu = OrderedDict([
+    ('a', agregar_libro),
+    ('v', ver_libros),
+    ('b', buscar_libro),
+    ('q', quitar)
+])   
+
+
+# Validacion de que el programa funcionara SOLO si lo ejecutamos directamente, NO FUNCIONA SI LO IMPORTAMOS COMO UN MODULO CUALQUIERA.
+# Si el programa lo ejecutamos directamente, Ejecuta las funciones especificadas (create_n_connect(), bienvenida(), menu_loop(), etc.)
+
+if __name__ == '__main__':
+
+    bienvenida()
+#    create_n_connect()
+    menu_loop()
