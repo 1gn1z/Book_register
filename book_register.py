@@ -40,8 +40,14 @@ Tipo de libro (cómic, manga, novela, libro de cuentos, etc.)
 Título del libro
 Título original
 Traducción de
+Escritura
 
 """
+
+# Modelo de Clase, llamado "Libro", que pasa a ser mapeado como una TABLA de la DB.
+# Los ATRIBUTOS (title, year, gender, isbn, read), son mapeados como COLUMNAS de la DB.
+# Y las INSTANCIAS (TIPOS DE DATOS) de estos atributos (CharField, DateTimeField, IntegerField), pasan a ser mapeados como FILAS
+
 class Libro(Model):
     anio_de_edicion = DateTimeField()
     anio_de_publicacion = DateTimeField()
@@ -50,6 +56,8 @@ class Libro(Model):
     edicion_en_coleccion = CharField()
     edicion = CharField()   
     editorial = CharField()
+    escritura = CharField()     # Ejemplo: Novela, cuento, ensayo, poesia, etc.
+    generos = CharField()
     ilustrador = CharField()
     isbn = CharField()
     leido = CharField()
@@ -63,4 +71,10 @@ class Libro(Model):
     class Meta:
         database = db
 
+# Funcion que CONECTA (db.connect()) y CREA LAS TABLAS (db.create_tables([Tabla1, Tabla2,])) SAFE=TRUE para evitar que crashee
+# el programa, ya que si la base de datos ya existe el programa crashea al correrlo una vez ya creada la base de datos.
+
+def create_n_connect():
+    db.connect()
+    db.create_tables([Libro], safe=True)        
 
