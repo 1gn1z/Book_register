@@ -246,3 +246,9 @@ def buscar_libro():
     """Buscar un Libro""" 
     search_query = input('Buscar libro: ').strip()
     ver_libros(search_query)
+
+# Funcion de bienvenida, solo 2 prints que le dan la bienvida al usuario.
+
+def bienvenida():
+    print('-----REGISTRO VIRTUAL DE LA BIBLIOTECA KEVORIANA-----\n')
+    print('Estas son las opciones disponibles, elige una :D\n')
