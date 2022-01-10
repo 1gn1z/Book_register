@@ -53,7 +53,6 @@ class Libro(Model):
     anio_de_publicacion = DateTimeField()
     autor = CharField()
     coleccion = CharField()
-    edicion_en_coleccion = CharField()
     edicion = CharField()   
     editorial = CharField()
     escritura = CharField()     # Ejemplo: Novela, cuento, ensayo, poesia, etc.
@@ -131,16 +130,16 @@ def agregar_libro():
         except ValueError:      # Si hay error de valor es xq el usuario ingreso letras en lugar de números
             print('Debes ingresar un número entero:\n')
         else:
-            editorial = input('Editorial del libro:\n')
+            editorial = input('Editorial del libro:\n') # Agregar Capitalize al nombre de la editorial
             edicion = input('Edición (por ejemplo: 1a edición, 1a reimpresión, etc:\n')
             escritura = input('Escritura (por ejemplo: cuento, ensayo, novela, etc:)\n')
             coleccion = input('Colección:\n')
-            genero = input('Genero(s) del libro:\n')
+            generos = input('Genero(s) del libro:\n')
             isbn = input('ISBN del libro:\n')
             ilustrador = input('Ilustrador del libro:\n')
             leido = input('Ya leiste el libro? [S/n]: ').lower().strip()
             libro_original = input('El libro es original? [S/n]:\n')
-            tipo_de_libro = input('Tipo de libro (por ejemplo, novela, comic, antologia de cuentos, etc.)')
+            tipo_de_libro = input('Tipo de libro (por ejemplo, novela, comic, antologia de cuentos, etc.):\n')
             traduccion = input('Traducción de:\n')
             Libro.registro = Libro.registro     # Fecha en la que el libro fue registrado en el sistema
             confirmacion = input('Los datos son correctos? [S/n]: ')
@@ -163,15 +162,15 @@ def agregar_libro():
                         editorial = editorial,
                         escritura =  escritura,
                         libro_original = libro_original,  
-                        genero = genero,
+                        generos = generos,
                         ilustrador = ilustrador,
                         isbn = isbn,
                         leido = leido,
-                        es_original = es_original,
                         Tipo_de_libro = tipo_de_libro,
                         titulo_libro = titulo_libro,
                         titulo_original = titulo_original,
-                        tradducion = traduccion
+                        tradducion = traduccion,
+                        paginas = paginas
                                 ) 
                     print('\nTu registro fue guardado exitosamente\n\n')
                     break
@@ -288,5 +287,5 @@ menu = OrderedDict([
 if __name__ == '__main__':
 
     bienvenida()
-#    create_n_connect()
+    create_n_connect()
     menu_loop()
