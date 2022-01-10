@@ -62,6 +62,7 @@ class Libro(Model):
     isbn = CharField()
     leido = CharField()
     libro_original = CharField()
+    paginas = IntegerField()        # Dato de tipo entero
     Tipo_de_libro = CharField()
     titulo_libro = CharField()
     titulo_original = CharField()
@@ -126,8 +127,9 @@ def agregar_libro():
         try:        # Intenta
             anio_de_publicacion = int(input('Año de publicación:\n'))
             anio_de_edicion = int(input('Año de edición:\n'))
+            paginas = int(input('Número de páginas:\n'))        # Número de páginas del libro
         except ValueError:      # Si hay error de valor es xq el usuario ingreso letras en lugar de números
-            print('Debes ingresar un número entero en año de publicacion:\n')
+            print('Debes ingresar un número entero:\n')
         else:
             editorial = input('Editorial del libro:\n')
             edicion = input('Edición (por ejemplo: 1a edición, 1a reimpresión, etc:\n')
@@ -140,7 +142,7 @@ def agregar_libro():
             libro_original = input('El libro es original? [S/n]:\n')
             tipo_de_libro = input('Tipo de libro (por ejemplo, novela, comic, antologia de cuentos, etc.)')
             traduccion = input('Traducción de:\n')
-            Libro.registro = Libro.registro#
+            Libro.registro = Libro.registro     # Fecha en la que el libro fue registrado en el sistema
             confirmacion = input('Los datos son correctos? [S/n]: ')
             if confirmacion == 'n':
                 print('\n\n')
@@ -173,3 +175,4 @@ def agregar_libro():
                                 ) 
                     print('\nTu registro fue guardado exitosamente\n\n')
                     break
+
