@@ -209,7 +209,7 @@ def ver_libros(search_query=None):      # Esta función recibe un parámetro, qu
         print('Título del libro: ' + libro.titulo_libro)
         print('Autor del libro: ' + libro.autor)
         print('Año de publicación: ' + str(libro.anio_de_publicacion)) 
-        print('Géneros(s) del libro: ' + libro.genero)
+        print('Géneros(s) del libro: ' + libro.generos)
         print('ISBN del libro: ' + libro.isbn)
         print()
         print('Libro leído? ')
