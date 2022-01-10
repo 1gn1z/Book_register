@@ -252,3 +252,16 @@ def buscar_libro():
 def bienvenida():
     print('-----REGISTRO VIRTUAL DE LA BIBLIOTECA KEVORIANA-----\n')
     print('Estas son las opciones disponibles, elige una :D\n')
+
+
+# Pedimos una opción, is la opción es estrictamente igual a la letra 's', sys.exit(1) que sale del programa. Sino, mostramos el menú del programa.
+
+def quitar():
+    """Salir del programa"""
+    option = input('Estas seguro de que quieres salir del programa? [S/n]: '
+                   ).lower().strip()
+    if option == 's':
+        sys.exit(1) 
+    else:
+        print('\n')
+        menu_loop()   
