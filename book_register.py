@@ -117,6 +117,8 @@ Libro.registro = Libro.registro     # Asignacion GLOBAL para usarla dentro de la
 
 def agregar_libro():
     """Agregar un libro"""
+    salir = ""          # Variable para guardar la opción de salir de "agregar_libro"
+    print("\n\n Presiona q para salir\n\n")
     print('Agregar un libro al registro: ')
     titulo_libro = input('Título del libro:\n').capitalize()      # Capitalize para que la primera letra del titulo se guarde en mayuscula
     titulo_original = input('Título original:\n').capitalize()     # Capitalize para que la primera letra del titulo se guarde en mayuscula
@@ -266,6 +268,20 @@ def quitar():
         menu_loop()   
 
 # IMPLEMENTAR FUNCION 'editar_libro' PENDIENTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+def editar_libro(libro):
+    """Editar el libro"""
+
+    print('Editando el libro: ' + libro.titulo_libro)   # Mostrar el título del libro a editar
+    print()
+    print('t) Editar título del libro:')
+    print('a) Editar año')
+    print('e) Editar editorial')
+    print('g) Editar género(s)')
+    print('i) Editar ISBN')
+    print('l) Editar leído (Si leíste el libro o no)')
+    accion = input('Que deseas editar?\n').lower().strip()
+
 
 # IMPLEMENTAR UNA FUNCION QUE LIMPIE LA PANTALLA :)
 
