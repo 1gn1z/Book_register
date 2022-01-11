@@ -130,17 +130,17 @@ def agregar_libro():
         except ValueError:      # Si hay error de valor es xq el usuario ingreso letras en lugar de números
             print('Debes ingresar un número entero:\n')
         else:
-            editorial = input('Editorial del libro:\n') # Agregar Capitalize al nombre de la editorial
+            tipo_de_libro = input('Tipo de libro (por ejemplo, novela, comic, antologia de cuentos, etc.):\n').capitalize() 
+            escritura = input('Tipo de escritura (por ejemplo: cuento, ensayo, novela, etc:)\n').capitalize()
+            editorial = input('Editorial del libro:\n').capitalize() # Agregar Capitalize al nombre de la editorial
             edicion = input('Edición (por ejemplo: 1a edición, 1a reimpresión, etc:\n')
-            escritura = input('Escritura (por ejemplo: cuento, ensayo, novela, etc:)\n')
-            coleccion = input('Colección:\n')
-            generos = input('Genero(s) del libro:\n')
+            traduccion = input('Traducción de:\n').title()      # Traductor con nombre y apellido en este caso en mayúsculas con uso de title()
+            coleccion = input('Colección:\n').capitalize()
+            generos = input('Genero(s) del libro:\n').title()
             isbn = input('ISBN del libro:\n')
-            ilustrador = input('Ilustrador del libro:\n')
+            ilustrador = input('Ilustrador del libro:\n').title()       # Para que se agregue cada nombre del ilustrador en mayúsculas (ejemplo: Nombre Apellido)
             leido = input('Ya leiste el libro? [S/n]: ').lower().strip()
             libro_original = input('El libro es original? [S/n]:\n')
-            tipo_de_libro = input('Tipo de libro (por ejemplo, novela, comic, antologia de cuentos, etc.):\n')
-            traduccion = input('Traducción de:\n')
             Libro.registro = Libro.registro     # Fecha en la que el libro fue registrado en el sistema
             confirmacion = input('Los datos son correctos? [S/n]: ')
             if confirmacion == 'n':
@@ -264,6 +264,21 @@ def quitar():
     else:
         print('\n')
         menu_loop()   
+
+# IMPLEMENTAR FUNCION 'editar_libro' PENDIENTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# IMPLEMENTAR UNA FUNCION QUE LIMPIE LA PANTALLA :)
+
+
+
+
+
+
+
+
+
+
+
 
 # MENU ORDENADO, que muestra UN VALOR ('a', 's', 'd'...) y despliega el DOCSTRING que contiene la funcion especificada (agregar_libro,
 # ver_libros, etc. Ejecutado el programa luce asi:
